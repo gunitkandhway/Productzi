@@ -1,0 +1,144 @@
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(45deg, #0a192f 0%, #112240 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.home-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 0.03) 0px,
+    rgba(0, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 20px
+  );
+  pointer-events: none;
+}
+
+.welcome-section {
+  backdrop-filter: blur(10px);
+  background: rgba(16, 32, 64, 0.4);
+  border: 1px solid rgba(64, 224, 208, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px rgba(64, 224, 208, 0.2);
+  animation: glow 4s infinite alternate;
+}
+
+.welcome-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(90deg, #64ffda, #00bcd4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+}
+
+.welcome-message {
+  font-size: 1.2rem;
+  color: #8892b0;
+  margin-top: 1rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-btn {
+  background: linear-gradient(90deg, #64ffda, #00bcd4);
+  color: #0a192f;
+}
+
+.shop-btn {
+  background: linear-gradient(90deg, #7928ca, #ff0080);
+  color: white;
+}
+
+.logout-btn {
+  background: linear-gradient(90deg, #ff4d4d, #f9cb28);
+  color: white;
+}
+
+.login-btn {
+  background: linear-gradient(90deg, #64ffda, #00bcd4);
+  color: #0a192f;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 20px rgba(64, 224, 208, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(64, 224, 208, 0.4);
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-title {
+    font-size: 2.5rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
