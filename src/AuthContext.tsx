@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { auth, provider, signInWithPopup, signOut } from "./firebase";
 import { onAuthStateChanged, User } from "firebase/auth";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 interface DecodedToken {
   exp: number;
@@ -14,6 +14,17 @@ interface AuthContextType {
   decodedToken: DecodedToken | null;
   login: () => Promise<void>;
   logout: () => Promise<void>;
+  cart: Product[];
+  addToCart: (product: Product) => void;
+}
+
+
+interface Product {
+  id: string;
+  title: string;
+  price: number;
+  images: string[];
+  quantity?: number; 
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,6 +32,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [decodedToken, setDecodedToken] = useState<DecodedToken | null>(null);
+  const [cart, setCart] = useState<Product[]>([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -60,13 +72,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       await signOut(auth);
       setUser(null);
       setDecodedToken(null);
+      setCart([]);
     } catch (error) {
       console.error("Logout failed", error);
     }
   };
 
+  const addToCart = (product: Product) => {
+    setCart((prevCart ) => {
+      const existingItem = prevCart.find(item => item.id === product.id);
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.id === product.id 
+            ? { ...item, quantity: (item.quantity || 0) + 1 }
+            : item
+        );
+      }
+      return [...prevCart, { ...product, quantity: 1 }];
+    });
+  };
+
   return (
-    <AuthContext.Provider value={{ user, decodedToken, login, logout }}>
+    <AuthContext.Provider value={{ user, decodedToken, login, logout, cart, addToCart }}>
       {children}
     </AuthContext.Provider>
   );

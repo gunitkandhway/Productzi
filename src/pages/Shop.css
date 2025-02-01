@@ -70,3 +70,104 @@
     background-color: #27ae60;
   }
   
+
+  /* Add these styles to your Shop.css */
+
+.cart-info {
+  cursor: pointer;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.cart-info:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #e6f1ff;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.cart-items {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.cart-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-details h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.cart-item-details p {
+  margin: 0;
+  color: #4facfe;
+}
+
+.modal-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.checkout-button {
+  background: linear-gradient(135deg, #00f2fe, #4facfe);
+}
+
+.empty-cart-message {
+  text-align: center;
+  color: #8892b0;
+  padding: 2rem;
+}
+
+/* Scrollbar styling */
+.cart-items::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
