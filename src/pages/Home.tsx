@@ -1,6 +1,6 @@
 import { useAuth } from "../AuthContext"
 import { useNavigate } from "react-router-dom"
-import type React from "react" // Added import for React
+import type React from "react" 
 import "./Home.css"
 
 const Home: React.FC = () => {
