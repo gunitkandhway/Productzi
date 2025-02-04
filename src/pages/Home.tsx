@@ -1,19 +1,23 @@
-import { useAuth } from "../AuthContext";
-import { useNavigate } from "react-router-dom";
-import "./Home.css";
+import { useAuth } from "../AuthContext"
+import { useNavigate } from "react-router-dom"
+import type React from "react" // Added import for React
+import "./Home.css"
 
 const Home: React.FC = () => {
-  const { login, user, logout } = useAuth();
-  const navigate = useNavigate();
+  const { login, user, logout } = useAuth()
+  const navigate = useNavigate()
 
   return (
     <div className="home-container">
       <div className="welcome-section">
         <h1 className="welcome-title">
-          Welcome {user ? user.displayName?.split(" ")[0] : ""}
+          Welcome to <span className="highlight">TechHub,</span>
+          {user && <span className="user-name"> {user.displayName?.split(" ")[0]}</span>}
         </h1>
         <p className="welcome-message">
-          {user ? "Explore the shop or manage your profile!" : "Please login to continue"}
+          {user
+            ? "Explore our cutting-edge tech shop or manage your profile!"
+            : "Please login to access our futuristic platform"}
         </p>
       </div>
 
@@ -21,23 +25,28 @@ const Home: React.FC = () => {
         {user ? (
           <>
             <button className="btn profile-btn" onClick={() => navigate("/profile")}>
-              Go to Profile
+              <span className="btn-text">Profile</span>
+              <span className="btn-icon">👤</span>
             </button>
             <button className="btn shop-btn" onClick={() => navigate("/shop")}>
-              Shop
+              <span className="btn-text">Shop</span>
+              <span className="btn-icon">🛒</span>
             </button>
             <button className="btn logout-btn" onClick={logout}>
-              Logout
+              <span className="btn-text">Logout</span>
+              <span className="btn-icon">🚪</span>
             </button>
           </>
         ) : (
           <button className="btn login-btn" onClick={login}>
-            Login with Google
+            <span className="btn-text">Login with Google</span>
+            <span className="btn-icon">🔑</span>
           </button>
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
+
